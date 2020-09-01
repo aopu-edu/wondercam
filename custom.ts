@@ -1,117 +1,112 @@
-
 /**
- * 使用此文件来定义自定义函数和图形块。
- * 想了解更详细的信息，请前往 https://makecode.microbit.org/blocks/custom
- */
-
-enum Functions {
-    //% block="无功能"
-    NoFunction,
-    //% block="人脸识别"
-    FaceDetect = 1,
-    //% block="物品识别"
-    ObjectDetect,
-    //% block="图像分类"
-    Classification,
-    //% block="特征学习"
-    FeatureLeanrning,
-    //% block="颜色识别"
-    ColorDetect,
-    //% block="视觉巡线"
-    LineFollowing,
-    //% block="二维码识别"
-    QrcodeScan,    
-    //% block="条形码识别"
-    BarcodeScan
-}
-
-enum Ojbects {
-    //% block="飞机"
-    Aeroplane = 1,
-    //% block="自行车"
-    Bicycle,
-    //% block="鸟"
-    Bird,
-    //% block="船"
-    Boar,
-    //% block="瓶子"
-    Bootle,
-    //% block="巴士"
-    Bus,
-    //% block="汽车"
-    Car,
-    //% block="猫"
-    Cat,
-    //% block="椅子"
-    Chair,
-    //% block="牛"
-    Cow,
-    //% block="餐桌"
-    Diningtable,
-    //% block="狗"
-    Dog,
-    //% block="马"
-    Horse,
-    //% block="摩托车"
-    Motorbike,
-    //% block="人"
-    Person,
-    //% block="盆栽"
-    Pottedplant,
-    //% block="羊"
-    Sheep,
-    //% block="沙发"
-    Sofa,
-    //% block="火车"
-    Train,
-    //% block="显示器"
-    TvMonitorn
-}
-
-enum Options {
-    //% block="X坐标"
-    Pos_X = 0,
-    //% block="Y坐标"
-    Pos_Y = 0x02,
-    //% block="宽度"
-    Width = 0x04,
-    //% block="高度"
-    Height = 0x06
-}
-
-enum Obj_Options {
-    //% block="X坐标"
-    Pos_X = 0,
-    //% block="Y坐标"
-    Pos_Y = 0x02,
-    //% block="宽度"
-    Width = 0x04,
-    //% block="高度"
-    Height = 0x06,
-    //% block="置信度"
-    Confidence = 0x08
-}
-
-enum Line_Options {
-    //% block="起始点X坐标"
-    Start_X = 0x00,
-    //% block="起始点Y坐标"
-    Start_Y = 0x02,
-    //% block="结束点X坐标"
-    END_X = 0x04,
-    //% block="结束点Y坐标"
-    END_Y = 0x06,
-    //% block="夹角"
-    Theta = 0x08,
-    //% block="偏移"
-    Rho = 0x0A
-}
-
-/**
- * 自定义图形块
+ WonderCam package
  */
 //% weight=100 color=#FF8844 icon=""
 namespace WonderCam {
+    export enum Functions {
+        //% block="NoFunction"
+        NoFunction,
+        //% block="Face recognition"
+        FaceDetect = 1,
+        //% block="Object detection"
+        ObjectDetect,
+        //% block="Classification"
+        Classification,
+        //% block="FeatureLearning"
+        FeatureLearning,
+        //% block="ColorDetect"
+        ColorDetect,
+        //% block="LineFollowing"
+        LineFollowing,
+        //% block="QrcodeScan"
+        QrcodeScan,    
+        //% block="BarcodeScan"
+        BarcodeScan
+    }
+    
+    export enum Objects {
+        //% block="Aeroplane"
+        Aeroplane = 1,
+        //% block="Bicycle"
+        Bicycle,
+        //% block="Bird"
+        Bird,
+        //% block="Boar"
+        Boar,
+        //% block="Bootle"
+        Bootle,
+        //% block="Bus"
+        Bus,
+        //% block="Car"
+        Car,
+        //% block="Cat"
+        Cat,
+        //% block="Chair"
+        Chair,
+        //% block="Cow"
+        Cow,
+        //% block="Diningtable"
+        Diningtable,
+        //% block="Dog"
+        Dog,
+        //% block="Horse"
+        Horse,
+        //% block="Motorbike"
+        Motorbike,
+        //% block="Person"
+        Person,
+        //% block="Pottedplant"
+        Pottedplant,
+        //% block="Sheep"
+        Sheep,
+        //% block="Sofa"
+        Sofa,
+        //% block="Train"
+        Train,
+        //% block="TvMonitorn"
+        TvMonitorn
+    }
+    
+    export enum Options {
+        //% block="X"
+        Pos_X = 0,
+        //% block="Y"
+        Pos_Y = 0x02,
+        //% block="Width"
+        Width = 0x04,
+        //% block="Height"
+        Height = 0x06
+    }
+    
+    export enum Obj_Options {
+        //% block="X"
+        Pos_X = 0,
+        //% block="Y"
+        Pos_Y = 0x02,
+        //% block="Width"
+        Width = 0x04,
+        //% block="Height"
+        Height = 0x06,
+        //% block="Confidence"
+        Confidence = 0x08
+    }
+    
+    export enum Line_Options {
+        //% block="Start X"
+        Start_X = 0x00,
+        //% block="Start Y"
+        Start_Y = 0x02,
+        //% block="End X"
+        END_X = 0x04,
+        //% block="End Y"
+        END_Y = 0x06,
+        //% block="Theta"
+        Theta = 0x08,
+        //% block="Rho"
+        Rho = 0x0A
+    }
+
+
     let Current = Functions.NoFunction;
     let ResultBuf:Buffer;
     const WONDERCAM_I2C_ADDR = 0x32
@@ -138,7 +133,7 @@ namespace WonderCam {
      * TODO:初始化I2C， 初始化WonderCam 
     */
     //% weight=180
-    //% block="初始化WonderCam"
+    //% block="Initialize WonderCam"
     export function wondercam_init(): void {
         while(i2creadnum(0) != 'v'.charCodeAt(0)){
             basic.showString("E")
@@ -149,7 +144,7 @@ namespace WonderCam {
      * TODO: 获取WonderCam正在运行的功能，返回当前运行功能的序号
      */
     //% weight=40
-    //% block="正在运行的功能"
+    //% block="The running function"
     export function CurrentFunc(): Functions {
         return i2creadnum(0x0035)
     }
@@ -157,7 +152,7 @@ namespace WonderCam {
      * TODO: 判断当前运行的功能是否是某个功能
      */
     //% weight=149
-    //% block="正在运行的功能是否是%func"
+    //% block="Is the running function |%func|?"
     //% func.defl=Functions.FaceDetect
     export function CurrentFuncIs(func:Functions): boolean {
         if(i2creadnum(0x0035) == func) {
@@ -178,7 +173,7 @@ namespace WonderCam {
      * TODO: 切换功能
      */
     //% weight=140
-    //% block="切换到%newfunc功能"
+    //% block="Switch to %newfunc"
     //% newfunc.defl=Functions.FaceDetect
     export function ChangeFunc(newfunc:Functions): void {
     }
@@ -186,7 +181,7 @@ namespace WonderCam {
      * TODO: 更新WonderCam的处理结果
      */
     //% weight=120
-    //% block="更新并获取结果"
+    //% block="Update and get results"
     export function UpdateResult(): void {
         let func = CurrentFunc()
         switch(func){
@@ -230,8 +225,8 @@ namespace WonderCam {
      * TODO: 是否检测到了人脸
      */
     //% weight=160
-    //% block="是否检测到人脸"
-    //% subcategory=人脸识别
+    //% block="Is any face detected?"
+    //% subcategory="Face recognition"
     export function IsDetectFace(): boolean {
         if(Current == Functions.FaceDetect){
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, 2) > 0){
@@ -245,8 +240,9 @@ namespace WonderCam {
      * TODO: 获取识别到的人脸个数
      */
     //% weight=150
-    //% block="检测到的全部人脸个数"
-    //% subcategory=人脸识别
+    //% block="Total number of detected faces"
+    //% subcategory="Face recognition"
+    //% subcategory.loc.zh="人脸识别"
     export function FaceNum(): number {
         if(Current == Functions.FaceDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 1);
@@ -254,12 +250,12 @@ namespace WonderCam {
         return 0;
     }
      /**
-     * TODO: 获取识别到的已经学习的人脸个数
+     * TODO: 是否识别到已经学习的人脸
      */
     //% weight=140
-    //% block="是否识别到已学习人脸"
-    //% subcategory=人脸识别
-    export function IsDetectedLeanedFace(): boolean {
+    //% block="Is any learned face recognized?"
+    //% subcategory="Face recognition"
+    export function IsDetectedLearnedFace(): boolean {
         if(Current == Functions.FaceDetect){
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, 2) > 0){
                 return true;
@@ -271,9 +267,9 @@ namespace WonderCam {
      * TODO: 获取识别到的已经学习的人脸个数
      */
     //% weight=135
-    //% block="识别到的已学习人脸个数"
-    //% subcategory=人脸识别
-    export function LeanedFaceNum(): number {
+    //% block="Number of learned faces recognized"
+    //% subcategory="Face recognition"
+    export function LearnedFaceNum(): number {
         if(Current == Functions.FaceDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 2);
         }
@@ -283,8 +279,8 @@ namespace WonderCam {
      * TODO: 获取识别到的未学习的人脸个数
      */
     //% weight=130
-    //% block="是否检测到的未学习人脸"
-    //% subcategory=人脸识别
+    //% block="Is any unlearned face detected?"
+    //% subcategory="Face recognition"
     export function IsDetectUnLeanedFace(): boolean {
         if(Current == Functions.FaceDetect){
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, 3) > 0){
@@ -297,9 +293,9 @@ namespace WonderCam {
      * TODO: 获取识别到的未学习的人脸个数
      */
     //% weight=120
-    //% block="检测到的未学习人脸个数"
-    //% subcategory=人脸识别
-    export function UnLeanedFaceNum(): number {
+    //% block="Number of unlearned faces detected"
+    //% subcategory="Face recognition"
+    export function UnLearnedFaceNum(): number {
         if(Current == Functions.FaceDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 3);
         }
@@ -309,9 +305,9 @@ namespace WonderCam {
      * TODO: 是否识别到了指定ID的人脸
      */
     //% weight=110
-    //% block="是否识别到了 人脸ID:%id"
+    //% block="Is the face ID:%id recognized"
     //% id.defl=1 id.min=1 id.max=5
-    //% subcategory=人脸识别
+    //% subcategory="Face recognition"
     export function IsDetectedFace(id: number): boolean {
         if(Current == Functions.FaceDetect){
             for(let i = 4; i < 4 + 29; i++){  // 逐个对比是否有这个id
@@ -327,11 +323,11 @@ namespace WonderCam {
      * TODO: 获返回指定ID的人脸的位置数据。若成功返回数据,失败返回0
      */
     //% weight=95
-    //% block="人脸ID:%id的%opt"
+    //% block="|%opt| of face ID:|%id|"
     //% id.defl=1 id.min=1 id.max=5
     //% opt.defl=Options.Pos_X
-    //% subcategory=人脸识别
-    export function getlearnedFaceY(id: number, opt:Options): number {
+    //% subcategory="Face recognition"
+    export function getlearnedFaceY(opt:Options, id: number): number {
         for(let i = 4; i < 4 + 29; i++){  // 逐个对比是否有这个id
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
                 let index = i - 4;
@@ -345,11 +341,11 @@ namespace WonderCam {
      * TODO: 获返回指定Index的未学习的人脸的位置数据。若成功返回数据,失败返回0
      */
     //% weight=13
-    //% block="识别到的第%index个未学习人脸的%opt"
+    //% block="|%opt| of the no.|%index| unlearned face recognized"
     //% index.defl=1 index.min=1 index.max=20
     //% opt.defl=Options.Pos_X
-    //% subcategory=人脸识别
-    export function getUnlearnedFaceX(index:number, opt:Options): number {
+    //% subcategory="Face recognition"
+    export function getUnlearnedFaceX(opt:Options, index:number): number {
         let num = 0;
         for(let i = 4; i < 4 + 29; i++) {  // 逐个对比是否有这个id
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, i) == 0xFF) {
@@ -365,8 +361,8 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了物品
      */
-    //% weight=100 block="是否识别到了物品"
-    //% subcategory=物品识别
+    //% weight=100 block="Is any object detected?"
+    //% subcategory="Object detection"
     export function IsDetectObject(): boolean {
         if(Current == Functions.ObjectDetect){
             if( ResultBuf.getNumber(NumberFormat.UInt8LE, 1) > 0){
@@ -378,8 +374,8 @@ namespace WonderCam {
     /**
      * TODO: 获取识别到的物品总数
      */
-    //% weight=97 blockId=ObjNum block="识别到的物品总数"
-    //% subcategory=物品识别
+    //% weight=97 blockId=ObjNum block="Total number of objects detected"
+    //% subcategory="Object detection"
     export function ObjNum(): number {
         if(Current == Functions.ObjectDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 1);
@@ -391,9 +387,9 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的物品
      */
-    //% weight=95 blockId=IsDetectedObject block="是否识别到了%d"
-    //% subcategory=物品识别
-    export function IsDetectedObjectOfId(id:Ojbects): boolean {
+    //% weight=95 blockId=IsDetectedObject block="Is %id| detected?"
+    //% subcategory="Object detection"
+    export function IsDetectedObjectOfId(id:Objects): boolean {
         if(Current == Functions.ObjectDetect){
             for(let i = 2; i < 2 + 29; i++){  // 逐个对比是否有这个id
                 if(ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id){
@@ -409,9 +405,9 @@ namespace WonderCam {
     /**
      * TODO: 识别到的指定ID的物品的个数
      */
-    //% weight=85  block="识别到的%id的个数"
-    //% subcategory=物品识别
-    export function NumOfDetectedObject(id:Ojbects): number {
+    //% weight=85  block="Number of |%id| detected"
+    //% subcategory="Object detection"
+    export function NumOfDetectedObject(id:Objects): number {
         let num = 0;
         if(Current == Functions.ObjectDetect){
             for(let i = 2; i < 2 + 29; i++){  // 逐个对比是否有这个id
@@ -425,11 +421,12 @@ namespace WonderCam {
     /**
      * TODO: 获取识别到的指定物品的指定序号的结果的数据
      */
-    //% weight=75 block="识别到的第%index个%id的%opt"
-    //% index.defl=1 index.min=1 index.max=29
+    //% weight=75 block="|%opt| of the no.|%index| |%id| detected"
     //% opt.defl=Obj_Options.Pos_X
-    //% subcategory=物品识别
-    export function getObjectW(index: number, id:Ojbects, opt:Obj_Options): number {
+    //% index.defl=1 index.min=1 index.max=10
+    //% id.defl=Objects.Aeroplane
+    //% subcategory="Object detection"
+    export function getObjectW(opt:Obj_Options, index: number, id:Objects): number {
         let num = 0
         let addr = 0
         if(Current == Functions.ObjectDetect) {
@@ -449,9 +446,9 @@ namespace WonderCam {
     /**
      * TODO: 获取置信度最大的ID
      */
-    //% weight=82 blockId=MaxConfidenceID block="置信度最大的ID"
+    //% weight=82 blockId=MaxConfidenceID block="The most confident ID"
     //% id.defl=1 id.min=1 id.max=20
-    //% subcategory=图像分类
+    //% subcategory="Classification"
     export function MaxConfidenceID(): number {
         if(Current == Functions.Classification) {
              return ResultBuf.getNumber(NumberFormat.UInt8LE, 0x01);
@@ -462,9 +459,9 @@ namespace WonderCam {
     /**
      * TODO: 获取最大的置信度
      */
-    //% weight=81 blockId=MaxConfidence block="最大的置信度"
+    //% weight=81 blockId=MaxConfidence block="The most confident"
     //% id.defl=1 id.min=1 id.max=20
-    //% subcategory=图像分类
+    //% subcategory="Classification"
     export function MaxConfidence(): number {
         if(Current == Functions.Classification) {
              let c = ResultBuf.getNumber(NumberFormat.UInt16LE, 0x02);
@@ -475,9 +472,9 @@ namespace WonderCam {
     /**
      * TODO: 获取指定ID的的置信度
      */
-    //% weight=80 blockId=ConfidenceOfId block="ID:%id的置信度"
+    //% weight=80 blockId=ConfidenceOfId block="Confident of ID:%id"
     //% id.defl=1 id.min=1 id.max=20
-    //% subcategory=图像分类
+    //% subcategory="Classification"
     export function ConfidenceOfIdClassification(id:number): number {
         if(Current == Functions.Classification) {
             let c = ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + ((id - 1) * 4))
@@ -489,8 +486,8 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了色块
      */
-    //% weight=99 block="是否识别到了颜色"
-    //% subcategory=颜色识别
+    //% weight=99 block="Is color detected?"
+    //% subcategory="Color detection"
     export function IsDetectedColorblobs(): boolean {
         if(Current == Functions.ColorDetect){
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, 0x01) > 0){
@@ -502,8 +499,8 @@ namespace WonderCam {
     /**
      * TODO: 识别到的色块总数
      */
-    //% weight=90 block="识别到的颜色总数"
-    //% subcategory=颜色识别
+    //% weight=90 block="Total number of detected colors"
+    //% subcategory="Color detection"
     export function NumberOfColorblobs(): number {
         if(Current == Functions.ColorDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 0x01);
@@ -513,9 +510,9 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的颜色
      */
-    //% weight=80 block="是否识别到了颜色ID:%id"
+    //% weight=80 block="Is color ID:%id detected"
     //% id.defl=1 id.min=1 id.max=7
-    //% subcategory=颜色识别
+    //% subcategory="Color detection"
     export function isDetectedColorId(id:number): boolean {
         let num = NumberOfColorblobs()
         if(Current == Functions.ColorDetect){
@@ -530,11 +527,11 @@ namespace WonderCam {
     /**
      * TODO: 返回指定ID颜色的位置数据
      */
-    //% weight=75 block="颜色ID:%id的%opt"
+    //% weight=75 block="|%opt| of color ID:|%id| detected"
     //% id.defl=1 id.min=1 id.max=7
     //% opt.defl=Options.Pos_X
-    //% subcategory=颜色识别
-    export function XOfColorId(id:number, opt: Options): number {
+    //% subcategory="Color detection"
+    export function XOfColorId(opt: Options, id:number): number {
         let num = NumberOfColorblobs()
         if(Current == Functions.ColorDetect){
             for(let i = 2; i < 2 + num; i++){  // 逐个对比是否有这个id
@@ -550,8 +547,8 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了线
      */
-    //% weight=100 block="是否识别到了线"
-    //% subcategory=视觉巡线
+    //% weight=100 block="Is any line detected?"
+    //% subcategory="LineFollowing"
     export function isDetectedLine(): boolean {
         let num = NumberOfLines()
         if(Current == Functions.LineFollowing){
@@ -564,8 +561,8 @@ namespace WonderCam {
     /**
      * TODO: 识别到的线总数
      */
-    //% weight=90 block="识别到的线的总数"
-    //% subcategory=视觉巡线
+    //% weight=90 block="Total number of lines detected"
+    //% subcategory="LineFollowing"
     export function NumberOfLines(): number {
         if(Current == Functions.LineFollowing){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 0x01);
@@ -575,9 +572,9 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的线
      */
-    //% weight=85 block="是否识别到了线条ID:%id"
+    //% weight=85 block="Is line ID:%id detected?"
     //% id.defl=1 id.min=1 id.max=3
-    //% subcategory=视觉巡线
+    //% subcategory="LineFollowing"
     export function isDetectedLineId(id:number): boolean {
         let num = NumberOfLines()
         if(Current == Functions.LineFollowing){
@@ -592,11 +589,11 @@ namespace WonderCam {
     /**
      * TODO: 返回指定ID的线的位置数据
      */
-    //% weight=80 block="线条ID:%id的%opt"
+    //% weight=80 block="|%opt| of line ID:|%id|"
     //% id.defl=1 id.min=1 id.max=3
     //% opt.defl=Line_Options
-    //% subcategory=视觉巡线
-    export function StartXOfLineId(id:number, opt:Line_Options): number {
+    //% subcategory="LineFollowing"
+    export function StartXOfLineId(opt:Line_Options, id:number): number {
         let num = NumberOfLines()
         if(Current == Functions.LineFollowing){
             for(let i = 2; i < 2 + num; i++){  // 逐个对比是否有这个id
@@ -612,8 +609,8 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了二维码
      */
-    //% weight=100 block="是否识别到二维码"
-    //% subcategory=二维码识别
+    //% weight=100 block="Is a QRcode detected?"
+    //% subcategory="QRcode scanning"
     export function isDetectedQrCode(): boolean {
         let num = NumberOfLines()
         if(Current == Functions.QrcodeScan){
@@ -628,7 +625,7 @@ namespace WonderCam {
      */
     //% weight=90 block="是否识别到了ID:%id二维码"
     //% id.defl=1 id.min=1 id.max=5
-    //% subcategory=二维码识别
+    //% subcategory="QRcode scanning"
     // export function isDetecteQrCodeId(id:number): boolean {
         // let num = NumberOfLines()
         // if(Current == Functions.QrcodeScan){
@@ -643,8 +640,8 @@ namespace WonderCam {
     /**
      * TODO: 识别到的二维码的数据长度
      */
-    //% weight=80 block="识别到的二维码的数据长度"
-    //% subcategory=二维码识别
+    //% weight=80 block="Data length of detected QRcode"
+    //% subcategory="QRcode scanning"
     export function LengthOfQrCodeData(): number {
         if(Current == Functions.QrcodeScan){
             return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x20)
@@ -654,8 +651,8 @@ namespace WonderCam {
     /**
      * TODO: 以字符串形式返回识别到的二维码的数据
      */
-    //% weight=70 block="识别到的二维码数据字符串"
-    //% subcategory=二维码识别
+    //% weight=70 block="String from the qrcode detected"
+    //% subcategory="QRcode scanning"
     export function StringFromQrCodeData(): string {
         if(Current == Functions.QrcodeScan){
             return ResultBuf.slice(0x30, LengthOfQrCodeData()).toString()
@@ -665,8 +662,8 @@ namespace WonderCam {
     /**
      * TODO: 以数组形式返回识别到的二维码的数据
      */
-    //% weight=60 block="识别到的二维码数据数组"
-    //% subcategory=二维码识别
+    //% weight=60 block="Array from the qrcode detected"
+    //% subcategory="QRcode scanning"
     export function ArrayFromQrCodeData(): Array<number> {
         if(Current == Functions.QrcodeScan){
             return ResultBuf.slice(0x30, LengthOfQrCodeData()).toArray(NumberFormat.UInt8LE)
@@ -678,8 +675,8 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了条形码
      */
-    //% weight=100 block="是否识别到了条形码"
-    //% subcategory=条形码识别
+    //% weight=100 block="Is a Barcode detected?"
+    //% subcategory="Barcode scanning"
     export function isDetectedBarCode(): boolean {
         let num = NumberOfLines()
         if(Current == Functions.BarcodeScan){
@@ -694,7 +691,7 @@ namespace WonderCam {
      */
     //% weight=90 block="是否识别到了ID:%id条形码"
     //% id.defl=1 id.min=1 id.max=5
-    //% subcategory=条形码识别
+    //% subcategory="Barcode scanning"
    // export function isDetectedBarCodeId(id:number): boolean {
    //     let num = NumberOfLines()
    //     if(Current == Functions.BarcodeScan){
@@ -709,8 +706,8 @@ namespace WonderCam {
     /**
      * TODO: 识别到的条形码的数据长度
      */
-    //% weight=80 block="识别到的条形码的数据长度"
-    //% subcategory=条形码识别
+    //% weight=80 block="Data length of detected Barcode"
+    //% subcategory="Barcode scanning"
     export function LengthOfBarCodeData(): number {
         if(Current == Functions.BarcodeScan){
             return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x20)
@@ -720,8 +717,8 @@ namespace WonderCam {
     /**
      * TODO: 以字符串形式返回识别到的条形码的数据
      */
-    //% weight=70 block="识别到的条形码数据字符串"
-    //% subcategory=条形码识别
+    //% weight=70 block="String from the barcode detected"
+    //% subcategory="Barcode scanning"
     export function StringFromBarCodeData(): string {
         if(Current == Functions.BarcodeScan){
             return ResultBuf.slice(0x30, LengthOfBarCodeData()).toString()
@@ -731,8 +728,8 @@ namespace WonderCam {
     /**
      * TODO: 以数组形式返回识别到的条形码的数据
      */
-    //% weight=60 block="识别到的条形码数据数组"
-    //% subcategory=条形码识别
+    //% weight=60 block="Array from the barcode detected"
+    //% subcategory="Barcode scanning"
     export function ArrayFromBarrCodeData(): Array<number> {
         if(Current == Functions.BarcodeScan){
             return ResultBuf.slice(0x30, LengthOfBarCodeData()).toArray(NumberFormat.UInt8LE)
