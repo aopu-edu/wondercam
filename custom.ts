@@ -149,7 +149,7 @@ namespace WonderCam {
     /**
      * TODO: 获取WonderCam正在运行的功能，返回当前运行功能的序号
      */
-    //% weight=40
+    //% weight=145
     //% block="The running function"
     export function CurrentFunc(): Functions {
         return i2creadnum(0x0035)
@@ -169,7 +169,7 @@ namespace WonderCam {
     /**
      * TODO: 获取不同功能对应的功能序号
      */
-    //% weight=30
+    //% weight=1
     //% block="%func"
     //% func.defl=Functions.FaceDetect
     export function FunctoNum(func:Functions): number {
@@ -200,8 +200,8 @@ namespace WonderCam {
     /**
      * TODO: 开关LED
      */
-    //% weight=140
-    //% block="Turn %newstate led"
+    //% weight=100
+    //% block="Turn |%newstate| led"
     //% newstate.defl=LED_STATE.ON
     export function TurnOnOrOffLed(newstate:LED_STATE): void {
         i2cwrite(0x0030, newstate);
@@ -209,13 +209,12 @@ namespace WonderCam {
     /**
      * TODO: 设置LED亮度
      */
-    //% weight=140
+    //% weight=90
     //% block="Set led brightness as %newlevel"
     //% newlevel.defl=100 newlevel.min=0 newlevel.max=100
     export function SetLedBrightness(newlevel: number): void {
         i2cwrite(0x0031, newlevel);
     }
-
     /**
      * TODO: 更新WonderCam的处理结果
      */
@@ -259,7 +258,6 @@ namespace WonderCam {
                 break;
         }
     }
-
     /**
      * TODO: 是否检测到了人脸
      */
@@ -274,7 +272,6 @@ namespace WonderCam {
         }
         return false
     } 
-
     /**
      * TODO: 获取识别到的人脸个数
      */
@@ -516,6 +513,45 @@ namespace WonderCam {
     //% subcategory="Classification"
     export function ConfidenceOfIdClassification(id:number): number {
         if(Current == Functions.Classification) {
+            let c = ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + ((id - 1) * 4))
+            return (c / 10000.0)
+        }
+        return 0
+    } 
+    //特征学习
+    /**
+     * TODO: 获取置信度最大的ID
+     */
+    //% weight=82 block="The most confident ID"
+    //% id.defl=1 id.min=1 id.max=20
+    //% subcategory="FeatureLearning"
+    export function FlMaxConfidenceID(): number {
+        if(Current == Functions.FeatureLearning) {
+             return ResultBuf.getNumber(NumberFormat.UInt8LE, 0x01);
+        }
+        return 0
+    } 
+    /**
+     * TODO: 获取最大的置信度
+     */
+    //% weight=81 block="The most confident"
+    //% id.defl=1 id.min=1 id.max=20
+    //% subcategory="FeatureLearning"
+    export function FlMaxConfidence(): number {
+        if(Current == Functions.FeatureLearning) {
+             let c = ResultBuf.getNumber(NumberFormat.UInt16LE, 0x02);
+             return (c / 10000.0)
+        }
+        return 0
+    } 
+    /**
+     * TODO: 获取指定ID的的置信度
+     */
+    //% weight=80 block="Confident of ID:%id"
+    //% id.defl=1 id.min=1 id.max=7
+    //% subcategory="FeatureLearning"
+    export function FlConfidenceOfId(id:number): number {
+        if(Current == Functions.FeatureLearning) {
             let c = ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + ((id - 1) * 4))
             return (c / 10000.0)
         }

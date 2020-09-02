@@ -2,6 +2,7 @@
     "{id:subcategory}Face recognition":"人脸识别",
     "{id:subcategory}Object detection":"物品识别", 
     "{id:subcategory}Classification":"图像分类",
+    "{id:subcategory}FeatureLearning":"特征学习",
     "{id:subcategory}Color detection":"颜色识别",
     "{id:subcategory}LineFollowing":"视觉巡线",
     "{id:subcategory}QRcode scanning":"二维码识别",
@@ -83,9 +84,13 @@
     "WonderCam.NumOfDetectedObject|block":"识别到的|%id|的个数",
     "WonderCam.getObjectW|block":"识别到的第|%index|个|%id|的|%opt|",
 
-    "WonderCam.MaxConfidenceID|block":"置信度最大的ID",
-    "WonderCam.MaxConfidence|block":"最大置信度",
-    "WonderCam.ConfidenceOfIdClassification|block":"ID:|%id|的置信度",
+    "WonderCam.MaxConfidenceID|block":"图像分类 置信度最大的ID",
+    "WonderCam.MaxConfidence|block":"图像分类 最大置信度",
+    "WonderCam.ConfidenceOfIdClassification|block":"图像分类 ID:|%id|的置信度",
+
+    "WonderCam.FlMaxConfidenceID|block":"特征学习 置信度最大的ID",
+    "WonderCam.FlMaxConfidence|block":"特征学习 最大置信度",
+    "WonderCam.FlConfidenceOfId|block":"特征学习 ID:|%id|的置信度",
 
     "WonderCam.IsDetectedColorblobs|block":"是否识别到了色块?",
     "WonderCam.NumberOfColorblobs|block":"识别到的色块总数",
