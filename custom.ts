@@ -106,6 +106,12 @@ namespace WonderCam {
         Rho = 0x0A
     }
 
+    export enum LED_STATE{
+        //% block="ON"
+        ON = 1,
+        //% block="OFF"
+        OFF = 0
+    }
 
     let Current = Functions.NoFunction;
     let ResultBuf:Buffer;
@@ -176,7 +182,40 @@ namespace WonderCam {
     //% block="Switch to %newfunc"
     //% newfunc.defl=Functions.FaceDetect
     export function ChangeFunc(newfunc:Functions): void {
+        let count = 0;
+        i2cwrite(0x0035, newfunc);
+        basic.pause(100)
+        while(true){
+            if(CurrentFuncIs(newfunc)){
+                break
+            }else{
+                if(count >= 80){
+                    break;
+                }
+                basic.pause(50)
+                count++
+            }
+        }
     }
+    /**
+     * TODO: 开关LED
+     */
+    //% weight=140
+    //% block="Turn %newstate led"
+    //% newstate.defl=LED_STATE.ON
+    export function TurnOnOrOffLed(newstate:LED_STATE): void {
+        i2cwrite(0x0030, newstate);
+    }
+    /**
+     * TODO: 设置LED亮度
+     */
+    //% weight=140
+    //% block="Set led brightness as %newlevel"
+    //% newlevel.defl=100 newlevel.min=0 newlevel.max=100
+    export function SetLedBrightness(newlevel: number): void {
+        i2cwrite(0x0031, newlevel);
+    }
+
     /**
      * TODO: 更新WonderCam的处理结果
      */

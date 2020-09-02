@@ -56,11 +56,16 @@
     "WonderCam.Line_Options.Theta|block":"夹角",
     "WonderCam.Line_Options.Rho|block":"偏移",
 
+    "WonderCam.LED_STATE.ON|block":"打开",
+    "WonderCam.LED_STATE.OFF|block":"关闭",
+
     "WonderCam.wondercam_init|block":"初始化WonderCam",
     "WonderCam.CurrentFunc|block":"正在运行的功能",
     "WonderCam.CurrentFuncIs|block":"正在运行的功能是|%func|?",
     "WonderCam.ChangeFunc|block":"切换到%newfunc功能",
     "WonderCam.UpdateResult|block":"更新并获取结果",
+    "WonderCam.TurnOnOrOffLed|block":"%newstate LED补光灯",
+    "WonderCam.SetLedBrightness|block":"将LED补光灯的亮度设为%newlevel",
 
     "WonderCam.IsDetectFace|block":"检测到了人脸?",
     "WonderCam.FaceNum|block":"检测到的全部人脸个数",
