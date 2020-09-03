@@ -236,6 +236,8 @@ namespace WonderCam {
                 Current = Functions.Classification
                 break;
             case 4:  //特征学习 结果地址
+                ResultBuf=i2creadtobuf(0x0E00, 128)
+                Current = Functions.FeatureLearning
                 break;
             case 5: // 颜色识别 结果地址
                 ResultBuf=i2creadtobuf(0x1000, 400)
