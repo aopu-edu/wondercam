@@ -1,13 +1,4 @@
 {
-    "{id:subcategory}Facial recognition":"人脸识别",
-    "{id:subcategory}Object detection":"物品识别", 
-    "{id:subcategory}Classification":"图像分类",
-    "{id:subcategory}FeatureLearning":"特征学习",
-    "{id:subcategory}Color detection":"颜色识别",
-    "{id:subcategory}LineFollowing":"视觉巡线",
-    "{id:subcategory}QRcode scanning":"二维码识别",
-    "{id:subcategory}Barcode scanning":"条形码识别",
-
     "WonderCam.Functions.NoFunction|block":"无功能",
     "WonderCam.Functions.FaceDetect|block":"人脸识别",
     "WonderCam.Functions.ObjectDetect|block":"物品识别",
