@@ -66,7 +66,7 @@
     "WonderCam.IsDetectUnLeanedFace|block":"是否检测到了未学习人脸?",
     "WonderCam.UnLearnedFaceNum|block":"检测到的未学习的人脸个数",
     "WonderCam.IsDetectedFace|block":"是否识别到了人脸ID:%id",
-    "WonderCam.getlearnedFaceY|block":"已学习人脸ID: %id 的 %opt",
+    "WonderCam.getlearnedFaceY|block":"已学习人脸ID: $id 的 $opt",
     "WonderCam.getUnlearnedFaceX|block":"检测到的第|%index|个未学习人脸的%opt",
 
     "WonderCam.IsDetectObject|block":"是否识别到了物品?",

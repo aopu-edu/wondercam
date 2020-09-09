@@ -361,7 +361,7 @@ namespace WonderCam {
      * TODO: 获返回指定ID的人脸的位置数据。若成功返回数据,失败返回0
      */
     //% weight=95
-    //% block="%opt of face ID: %id"
+    //% block="$opt of face ID: $id"
     //% id.defl=1 id.min=1 id.max=5
     //% opt.defl=Options.Pos_X
     //% subcategory="Facial recognition"
