@@ -6,7 +6,7 @@ namespace WonderCam {
     export enum Functions {
         //% block="NoFunction"
         NoFunction,
-        //% block="Face recognition"
+        //% block="Facial recognition"
         FaceDetect = 1,
         //% block="Object detection"
         ObjectDetect,
@@ -265,10 +265,10 @@ namespace WonderCam {
      */
     //% weight=160
     //% block="Is any face detected?"
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function IsDetectFace(): boolean {
         if(Current == Functions.FaceDetect){
-            if(ResultBuf.getNumber(NumberFormat.UInt8LE, 2) > 0){
+            if(ResultBuf.getNumber(NumberFormat.UInt8LE, 1) > 0){
                 return true
             }
         }
@@ -279,7 +279,7 @@ namespace WonderCam {
      */
     //% weight=150
     //% block="Total number of detected faces"
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     //% subcategory.loc.zh="人脸识别"
     export function FaceNum(): number {
         if(Current == Functions.FaceDetect){
@@ -292,7 +292,7 @@ namespace WonderCam {
      */
     //% weight=140
     //% block="Is any learned face recognized?"
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function IsDetectedLearnedFace(): boolean {
         if(Current == Functions.FaceDetect){
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, 2) > 0){
@@ -306,7 +306,7 @@ namespace WonderCam {
      */
     //% weight=135
     //% block="Number of learned faces recognized"
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function LearnedFaceNum(): number {
         if(Current == Functions.FaceDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 2);
@@ -318,7 +318,7 @@ namespace WonderCam {
      */
     //% weight=130
     //% block="Is any unlearned face detected?"
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function IsDetectUnLeanedFace(): boolean {
         if(Current == Functions.FaceDetect){
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, 3) > 0){
@@ -332,7 +332,7 @@ namespace WonderCam {
      */
     //% weight=120
     //% block="Number of unlearned faces detected"
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function UnLearnedFaceNum(): number {
         if(Current == Functions.FaceDetect){
             return ResultBuf.getNumber(NumberFormat.UInt8LE, 3);
@@ -345,7 +345,7 @@ namespace WonderCam {
     //% weight=110
     //% block="Is the face ID:%id recognized"
     //% id.defl=1 id.min=1 id.max=5
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function IsDetectedFace(id: number): boolean {
         if(Current == Functions.FaceDetect){
             for(let i = 4; i < 4 + 29; i++){  // 逐个对比是否有这个id
@@ -364,7 +364,7 @@ namespace WonderCam {
     //% block="|%opt| of face ID:|%id|"
     //% id.defl=1 id.min=1 id.max=5
     //% opt.defl=Options.Pos_X
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function getlearnedFaceY(opt:Options, id: number): number {
         for(let i = 4; i < 4 + 29; i++){  // 逐个对比是否有这个id
             if(ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
@@ -382,7 +382,7 @@ namespace WonderCam {
     //% block="|%opt| of the no.|%index| unlearned face recognized"
     //% index.defl=1 index.min=1 index.max=20
     //% opt.defl=Options.Pos_X
-    //% subcategory="Face recognition"
+    //% subcategory="Facial recognition"
     export function getUnlearnedFaceX(opt:Options, index:number): number {
         let num = 0;
         for(let i = 4; i < 4 + 29; i++) {  // 逐个对比是否有这个id
