@@ -158,7 +158,7 @@ namespace WonderCam {
      * TODO: 判断当前运行的功能是否是某个功能
      */
     //% weight=149
-    //% block="Is the running function |%func|?"
+    //% block="Is the running function |$func|?"
     //% func.defl=Functions.FaceDetect
     export function CurrentFuncIs(func:Functions): boolean {
         if(i2creadnum(0x0035) == func) {
@@ -170,7 +170,7 @@ namespace WonderCam {
      * TODO: 获取不同功能对应的功能序号
      */
     //% weight=1
-    //% block="%func"
+    //% block="$func"
     //% func.defl=Functions.FaceDetect
     export function FunctoNum(func:Functions): number {
         return func
@@ -179,7 +179,7 @@ namespace WonderCam {
      * TODO: 切换功能
      */
     //% weight=140
-    //% block="Switch to %newfunc"
+    //% block="Switch to $newfunc"
     //% newfunc.defl=Functions.FaceDetect
     export function ChangeFunc(newfunc:Functions): void {
         let count = 0;
@@ -201,7 +201,7 @@ namespace WonderCam {
      * TODO: 开关LED
      */
     //% weight=100
-    //% block="Turn |%newstate| led"
+    //% block="Turn |$newstate| led"
     //% newstate.defl=LED_STATE.ON
     export function TurnOnOrOffLed(newstate:LED_STATE): void {
         i2cwrite(0x0030, newstate);
@@ -210,7 +210,7 @@ namespace WonderCam {
      * TODO: 设置LED亮度
      */
     //% weight=90
-    //% block="Set led brightness as %newlevel"
+    //% block="Set led brightness as $newlevel"
     //% newlevel.defl=100 newlevel.min=0 newlevel.max=100
     export function SetLedBrightness(newlevel: number): void {
         i2cwrite(0x0031, newlevel);
@@ -343,7 +343,7 @@ namespace WonderCam {
      * TODO: 是否识别到了指定ID的人脸
      */
     //% weight=110
-    //% block="Is the face ID:%id recognized"
+    //% block="Is the face ID:$id recognized"
     //% id.defl=1 id.min=1 id.max=5
     //% subcategory="Facial recognition"
     export function IsDetectedFace(id: number): boolean {
@@ -379,7 +379,7 @@ namespace WonderCam {
      * TODO: 获返回指定Index的未学习的人脸的位置数据。若成功返回数据,失败返回0
      */
     //% weight=13
-    //% block="|%opt| of the no.|%index| unlearned face recognized"
+    //% block="|$opt| of the no.|$index| unlearned face recognized"
     //% index.defl=1 index.min=1 index.max=20
     //% opt.defl=Options.Pos_X
     //% subcategory="Facial recognition"
@@ -425,7 +425,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的物品
      */
-    //% weight=95 blockId=IsDetectedObject block="Is %id| detected?"
+    //% weight=95 blockId=IsDetectedObject block="Is $id| detected?"
     //% subcategory="Object detection"
     export function IsDetectedObjectOfId(id:Objects): boolean {
         if(Current == Functions.ObjectDetect){
@@ -443,7 +443,7 @@ namespace WonderCam {
     /**
      * TODO: 识别到的指定ID的物品的个数
      */
-    //% weight=85  block="Number of |%id| detected"
+    //% weight=85  block="Number of |$id| detected"
     //% subcategory="Object detection"
     export function NumOfDetectedObject(id:Objects): number {
         let num = 0;
@@ -459,7 +459,7 @@ namespace WonderCam {
     /**
      * TODO: 获取识别到的指定物品的指定序号的结果的数据
      */
-    //% weight=75 block="|%opt| of the no.|%index| |%id| detected"
+    //% weight=75 block="|$opt| of the no.|$index| |$id| detected"
     //% opt.defl=Obj_Options.Pos_X
     //% index.defl=1 index.min=1 index.max=10
     //% id.defl=Objects.Aeroplane
@@ -510,7 +510,7 @@ namespace WonderCam {
     /**
      * TODO: 获取指定ID的的置信度
      */
-    //% weight=80 blockId=ConfidenceOfId block="Confident of ID:%id"
+    //% weight=80 blockId=ConfidenceOfId block="Confident of ID:$id"
     //% id.defl=1 id.min=1 id.max=20
     //% subcategory="Classification"
     export function ConfidenceOfIdClassification(id:number): number {
@@ -549,7 +549,7 @@ namespace WonderCam {
     /**
      * TODO: 获取指定ID的的置信度
      */
-    //% weight=80 block="Confident of ID:%id"
+    //% weight=80 block="Confident of ID:$id"
     //% id.defl=1 id.min=1 id.max=7
     //% subcategory="FeatureLearning"
     export function FlConfidenceOfId(id:number): number {
@@ -587,7 +587,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的颜色
      */
-    //% weight=80 block="Is color ID:%id detected"
+    //% weight=80 block="Is color ID:$id detected"
     //% id.defl=1 id.min=1 id.max=7
     //% subcategory="Color detection"
     export function isDetectedColorId(id:number): boolean {
@@ -604,7 +604,7 @@ namespace WonderCam {
     /**
      * TODO: 返回指定ID颜色的位置数据
      */
-    //% weight=75 block="|%opt| of color ID:|%id| detected"
+    //% weight=75 block="|$opt| of color ID:|$id| detected"
     //% id.defl=1 id.min=1 id.max=7
     //% opt.defl=Options.Pos_X
     //% subcategory="Color detection"
@@ -649,7 +649,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的线
      */
-    //% weight=85 block="Is line ID:%id detected?"
+    //% weight=85 block="Is line ID:$id detected?"
     //% id.defl=1 id.min=1 id.max=3
     //% subcategory="LineFollowing"
     export function isDetectedLineId(id:number): boolean {
@@ -666,7 +666,7 @@ namespace WonderCam {
     /**
      * TODO: 返回指定ID的线的位置数据
      */
-    //% weight=80 block="|%opt| of line ID:|%id|"
+    //% weight=80 block="|$opt| of line ID:|$id|"
     //% id.defl=1 id.min=1 id.max=3
     //% opt.defl=Line_Options
     //% subcategory="LineFollowing"
@@ -700,7 +700,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的二维码
      */
-    //% weight=90 block="是否识别到了ID:%id二维码"
+    //% weight=90 block="是否识别到了ID:$id二维码"
     //% id.defl=1 id.min=1 id.max=5
     //% subcategory="QRcode scanning"
     // export function isDetecteQrCodeId(id:number): boolean {
@@ -766,7 +766,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的条形码
      */
-    //% weight=90 block="是否识别到了ID:%id条形码"
+    //% weight=90 block="是否识别到了ID:$id条形码"
     //% id.defl=1 id.min=1 id.max=5
     //% subcategory="Barcode scanning"
    // export function isDetectedBarCodeId(id:number): boolean {
