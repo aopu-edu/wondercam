@@ -341,10 +341,10 @@ namespace WonderCam {
     }
     /**
      * TODO: 是否识别到了指定ID的人脸
+     * @param id[1-5] eg: 1
      */
     //% weight=110
     //% block="Is the face ID:$id recognized"
-    //% id.defl=1 id.min=1 id.max=5
     //% subcategory="Facial recognition"
     export function IsDetectedFace(id: number): boolean {
         if(Current == Functions.FaceDetect){
