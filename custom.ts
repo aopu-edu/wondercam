@@ -100,10 +100,10 @@ namespace WonderCam {
         END_X = 0x04,
         //% block="End Y"
         END_Y = 0x06,
-        //% block="Theta"
-        Theta = 0x08,
-        //% block="Rho"
-        Rho = 0x0A
+        //% block="Angle"
+        Angle = 0x08,
+        //% block="Offset"
+        Offset = 0x0A
     }
 
     export enum LED_STATE{
@@ -674,8 +674,22 @@ namespace WonderCam {
         let num = NumberOfLines()
         if(Current == Functions.LineFollowing){
             for(let i = 2; i < 2 + num; i++){  // 逐个对比是否有这个id
-                if(ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id){
-                    return ResultBuf.getNumber(NumberFormat.Int16LE, (0x30 + opt) + ((i - 2) * 16));
+                if (ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
+                    let tmp = ResultBuf.getNumber(NumberFormat.Int16LE, (0x30 + opt) + ((i - 2) * 16))
+                    switch (opt) {
+                        case Line_Options.Angle:
+                            if (tmp > 90) {
+                                return tmp - 180
+                            } else {
+                                return tmp
+                            }
+                        case Line_Options.Offset:
+                            tmp = Math.abs(tmp)
+                            return tmp - 160
+                        default:
+                            return tmp
+                    }
+                    
                 }
             }
         }
