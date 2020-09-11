@@ -54,8 +54,8 @@
     "WonderCam.Line_Options.Start_Y|block":"起始点Y坐标",
     "WonderCam.Line_Options.END_X|block":"结束点X坐标",
     "WonderCam.Line_Options.END_Y|block":"结束点X坐标",
-    "WonderCam.Line_Options.Theta|block":"夹角",
-    "WonderCam.Line_Options.Rho|block":"偏移",
+    "WonderCam.Line_Options.Angle|block":"夹角",
+    "WonderCam.Line_Options.Offset|block":"偏移",
 
     "WonderCam.LED_STATE.ON|block":"打开",
     "WonderCam.LED_STATE.OFF|block":"关闭",
