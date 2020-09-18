@@ -115,7 +115,7 @@ namespace WonderCam {
 
     let Current = Functions.NoFunction;
     let ResultBuf:Buffer;
-    const WONDERCAM_I2C_ADDR = 0x32
+    let WONDERCAM_I2C_ADDR = 0x32
     function i2cwrite(reg: number, value: number) {
         let buf = pins.createBuffer(3)
         buf.setNumber(NumberFormat.UInt8LE, 0, reg & 0xFF)
@@ -137,10 +137,12 @@ namespace WonderCam {
     }
     /**
      * TODO:初始化I2C， 初始化WonderCam 
+     * @param dev_addr eg: 0x32
     */
     //% weight=180
-    //% block="Initialize WonderCam"
-    export function wondercam_init(): void {
+    //% block="Initialize WonderCam at $dev_addr"
+    export function wondercam_init(dev_addr: number): void {
+        WONDERCAM_I2C_ADDR = dev_addr
         while(i2creadnum(0) != 'v'.charCodeAt(0)){
             basic.showString("E")
         }
