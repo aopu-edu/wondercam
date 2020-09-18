@@ -175,9 +175,9 @@ namespace WonderCam {
      * @param dev_addr eg: 0x32
     */
     //% weight=180
-    //% block="Initialize WonderCam at $dev_addr"
+    //% block="Initialize WonderCam at |$dev_addr|"
     //% dev_addr.defl=DEV_ADDR.x32
-    export function wondercam_init(dev_addr: DEV_ADDR = DEV_ADDR.x32): void {
+    export function wondercam_init(dev_addr: DEV_ADDR): void {
         WONDERCAM_I2C_ADDR = dev_addr
         while (i2creadnum(0) != 'v'.charCodeAt(0)) {
             basic.showString("E")
