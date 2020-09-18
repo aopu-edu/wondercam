@@ -172,7 +172,6 @@ namespace WonderCam {
     }
     /**
      * TODO:初始化I2C， 初始化WonderCam 
-     * @param dev_addr eg: 0x32
     */
     //% weight=180
     //% block="Initialize WonderCam at |$dev_addr|"
