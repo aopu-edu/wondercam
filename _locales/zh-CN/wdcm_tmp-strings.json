@@ -60,7 +60,7 @@
     "WonderCam.LED_STATE.ON|block":"打开",
     "WonderCam.LED_STATE.OFF|block":"关闭",
 
-    "WonderCam.wondercam_init|block":"初始化WonderCam",
+    "WonderCam.wondercam_init|block":"初始化WonderCam 地址|$dev_addr|",
     "WonderCam.CurrentFunc|block":"正在运行的功能",
     "WonderCam.CurrentFuncIs|block":"正在运行的功能是|$func|?",
     "WonderCam.ChangeFunc|block":"切换到$newfunc功能",
