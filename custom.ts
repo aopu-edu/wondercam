@@ -109,25 +109,25 @@ namespace WonderCam {
     }
 
     export enum AprilTag_Options {
-        //% block = "Center X"
+        //% block="Center X"
         Pos_X = 0x00,
-        //% block = "Center Y"
+        //% block="Center Y"
         Pos_y = 0x02,
-        //% block = "W"
+        //% block="W"
         Width = 0x04,
-        //% block = "H"
+        //% block="H"
         Height = 0x06,
-        //% block = "X Translation"
+        //% block="X Translation"
         X_T = 0x08,
-        //% block = "X Rotation"
+        //% block="X Rotation"
         X_R = 0x0A,
-        //% block = "Y Translation"
+        //% block="Y Translation"
         Y_T = 0x0C,
-        //% block = "Y Rotation"
+        //% block="Y Rotation"
         Y_R = 0x0E,
-        //% block = "Z Translation"
+        //% block="Z Translation"
         Z_T = 0x10,
-        //% block = "Z Rotation"
+        //% block="Z Rotation"
         Z_R = 0x12,
     }
 
