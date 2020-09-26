@@ -809,7 +809,7 @@ namespace WonderCam {
      */
     //% weight=70 block="Number of tag ID:|$id| detected "
     //% subcategory="AprilTag"
-    export function numTagIdDetected(): number {
+    export function numTagIdDetected(id: number): number {
         let count = 0
         if (Current == Functions.AprilTag) {
             let num = ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
