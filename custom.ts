@@ -827,7 +827,8 @@ namespace WonderCam {
      * TODO: 返回指定标签的位置数据
      */
     //% weight=60 block="|$opt| of No.|$index| Tag ID:|$id|"
-    //% id.defl=1
+    //% index.defl=1 index.min=1
+    //% id.defl=0
     //% subcategory="AprilTag"
     export function getTagDataId(opt: AprilTag_Options,index: number, id: number): number {
         if (Current == Functions.AprilTag) {
