@@ -5,6 +5,7 @@
     "{id:subcategory}FeatureLearning":"特征学习",
     "{id:subcategory}Color detection":"颜色识别",
     "{id:subcategory}LineFollowing":"视觉巡线",
+    "{id:subcategory}AprilTag": "标签识别",
     "{id:subcategory}QRcode scanning":"二维码识别",
     "{id:subcategory}Barcode scanning":"条形码识别",
     
@@ -57,6 +58,17 @@
     "WonderCam.Line_Options.Angle|block":"夹角",
     "WonderCam.Line_Options.Offset|block":"偏移",
 
+    "WonderCam.AprilTag_Options.Pos_X|block":"中心X坐标",
+    "WonderCam.AprilTag_Options.Pos_y|block":"中心Y坐标",
+    "WonderCam.AprilTag_Options.Width|block":"外框宽度",
+    "WonderCam.AprilTag_Options.Height|block":"外框高度",
+    "WonderCam.AprilTag_Options.X_T|block":"X轴变换",
+    "WonderCam.AprilTag_Options.X_R|block":"X轴旋转",
+    "WonderCam.AprilTag_Options.Y_T|block":"Y轴变换",
+    "WonderCam.AprilTag_Options.Y_R|block":"Y轴旋转",
+    "WonderCam.AprilTag_Options.Z_T|block":"Z轴变换",
+    "WonderCam.AprilTag_Options.Z_R|block":"Z轴旋转",
+
     "WonderCam.LED_STATE.ON|block":"打开",
     "WonderCam.LED_STATE.OFF|block":"关闭",
 
@@ -68,19 +80,19 @@
     "WonderCam.TurnOnOrOffLed|block":"$newstate LED补光灯",
     "WonderCam.SetLedBrightness|block":"将LED补光灯的亮度设为$newlevel",
 
-    "WonderCam.IsDetectFace|block":"检测到了人脸?",
+    "WonderCam.IsDetectFace|block":"检测到了人脸",
     "WonderCam.FaceNum|block":"检测到的全部人脸个数",
-    "WonderCam.IsDetectedLearnedFace|block":"是否识别到了已学习人脸?",
+    "WonderCam.IsDetectedLearnedFace|block":"识别到了已学习人脸",
     "WonderCam.LearnedFaceNum|block":"检测到的已学习的人脸个数",
-    "WonderCam.IsDetectUnLeanedFace|block":"是否检测到了未学习人脸?",
+    "WonderCam.IsDetectUnLeanedFace|block":"检测到了未学习人脸",
     "WonderCam.UnLearnedFaceNum|block":"检测到的未学习的人脸个数",
-    "WonderCam.IsDetectedFace|block":"是否识别到了人脸ID:$id",
+    "WonderCam.IsDetectedFace|block":"识别到了人脸ID:$id",
     "WonderCam.getlearnedFaceY|block":"已学习人脸ID: $id 的 $opt",
     "WonderCam.getUnlearnedFaceX|block":"检测到的第|$index|个未学习人脸的$opt",
 
-    "WonderCam.IsDetectObject|block":"是否识别到了物品?",
+    "WonderCam.IsDetectObject|block":"识别到了物品",
     "WonderCam.ObjNum|block":"识别到的物品总数",
-    "WonderCam.IsDetectedObjectOfId|block":"是否识别到了|$id|",
+    "WonderCam.IsDetectedObjectOfId|block":"识别到了|$id|",
     "WonderCam.NumOfDetectedObject|block":"识别到的|$id|的个数",
     "WonderCam.getObjectW|block":"识别到的第|$index|个|$id|的|$opt|",
 
@@ -92,22 +104,28 @@
     "WonderCam.FlMaxConfidence|block":"特征学习 最大置信度",
     "WonderCam.FlConfidenceOfId|block":"特征学习 ID:|$id|的置信度",
 
-    "WonderCam.IsDetectedColorblobs|block":"是否识别到了色块?",
+    "WonderCam.IsDetectedColorblobs|block":"识别到了色块",
     "WonderCam.NumberOfColorblobs|block":"识别到的色块总数",
-    "WonderCam.isDetectedColorId|block":"是否识别到了颜色ID:|$id|",
+    "WonderCam.isDetectedColorId|block":"识别到了颜色ID:|$id|",
     "WonderCam.XOfColorId|block":"颜色ID:|$id| 的 $opt",
 
-    "WonderCam.isDetectedLine|block":"是否识别到了线?",
+    "WonderCam.isDetectedLine|block":"识别到了线",
     "WonderCam.NumberOfLines|block":"识别到的线的总数",
-    "WonderCam.isDetectedLineId|block":"是否识别到了线条ID:$id",
+    "WonderCam.isDetectedLineId|block":"识别到了线条ID:$id",
     "WonderCam.StartXOfLineId|block":"线条ID:|$id|的|$opt|",
 
-    "WonderCam.isDetectedQrCode|block":"是否识别到二维码?",
+    "WonderCam.getTagDataId|block": "识别到了标签",
+    "WonderCam.numberAllTagDetected|block": "识别到的全部标签个数",
+    "WonderCam.isDetecteAprilTagId|block": "识别到了标签ID:|$id|",
+    "WonderCam.numTagIdDetected": "识别到的标签ID:|$id|的个数",
+    "WonderCam.isDetectedAprilTag|block": "识别到的第|$index|个标签ID:|$id|的|$opt|",
+
+    "WonderCam.isDetectedQrCode|block":"识别到了二维码",
     "WonderCam.LengthOfQrCodeData|block":"识别到的二维码的数据长度",
     "WonderCam.StringFromQrCodeData|block":"识别到的二维码的字符串数据",
     "WonderCam.ArrayFromQrCodeData|block":"识别到的二维码的数组数据",
 
-    "WonderCam.isDetectedBarCode|block":"是否识别到条形码?",
+    "WonderCam.isDetectedBarCode|block":"识别到了条形码",
     "WonderCam.LengthOfBarCodeData|block":"识别到的条形码的数据长度",
     "WonderCam.StringFromBarCodeData|block":"识别到的条形码的字符串数据",
     "WonderCam.ArrayFromBarrCodeData|block":"识别到的条形码的数组数据"

@@ -18,6 +18,8 @@ namespace WonderCam {
         ColorDetect,
         //% block="LineFollowing"
         LineFollowing,
+        //% block="AprilTag"
+        AprilTag,
         //% block="QrcodeScan"
         QrcodeScan,
         //% block="BarcodeScan"
@@ -104,6 +106,29 @@ namespace WonderCam {
         Angle = 0x08,
         //% block="Offset"
         Offset = 0x0A
+    }
+
+    export enum AprilTag_Options {
+        //% block = "Center X"
+        Pos_X = 0x00,
+        //% block = "Center Y"
+        Pos_y = 0x02,
+        //% block = "W"
+        Width = 0x04,
+        //% block = "H"
+        Height = 0x06,
+        //% block = "X Translation"
+        X_T = 0x08,
+        //% block = "X Rotation"
+        X_R = 0x0A,
+        //% block = "Y Translation"
+        Y_T = 0x0C,
+        //% block = "Y Rotation"
+        Y_R = 0x0E,
+        //% block = "Z Translation"
+        Z_T = 0x10,
+        //% block = "Z Rotation"
+        Z_R = 0x12,
     }
 
     export enum LED_STATE {
@@ -265,31 +290,35 @@ namespace WonderCam {
                 ResultBuf = i2creadtobuf(0x0400, 512)
                 Current = Functions.FaceDetect;
                 break;
-            case 2: //物品识别 结果地址
+            case Functions.ObjectDetect: //物品识别 结果地址
                 ResultBuf = i2creadtobuf(0x0800, 512)
                 Current = Functions.ObjectDetect
                 break;
-            case 3: //图像分类 结果地址
+            case Functions.Classification: //图像分类 结果地址
                 ResultBuf = i2creadtobuf(0x0C00, 128)
                 Current = Functions.Classification
                 break;
-            case 4:  //特征学习 结果地址
+            case Functions.FeatureLearning:  //特征学习 结果地址
                 ResultBuf = i2creadtobuf(0x0E00, 128)
                 Current = Functions.FeatureLearning
                 break;
-            case 5: // 颜色识别 结果地址
+            case Functions.ColorDetect: // 颜色识别 结果地址
                 ResultBuf = i2creadtobuf(0x1000, 400)
                 Current = Functions.ColorDetect
                 break;
-            case 6: //视觉巡线 结果地址
+            case Functions.LineFollowing: //视觉巡线 结果地址
                 ResultBuf = i2creadtobuf(0x1400, 256)
                 Current = Functions.LineFollowing
                 break;
-            case 7: //QRCODE 结果地址
+            case Functions.AprilTag:
+                ResultBuf = i2creadtobuf(0x1E00, 512);
+                Current = Functions.AprilTag
+                break;
+            case Functions.QrcodeScan: //QRCODE 结果地址
                 ResultBuf = i2creadtobuf(0x1800, 512)
                 Current = Functions.QrcodeScan
                 break;
-            case 8: //BAR CODE 结果地址
+            case Functions.BarcodeScan: //BAR CODE 结果地址
                 ResultBuf = i2creadtobuf(0x1C00, 512)
                 Current = Functions.BarcodeScan
                 break;
@@ -733,15 +762,119 @@ namespace WonderCam {
         }
         return 0
     }
+    //AprilTag
+    /**
+     * TODO: 是否识别到了标签
+     */
+    //% weight=100 block="Is any Tag detected?"
+    //% subcategory="AprilTag"
+    export function isDetectedAprilTag(): boolean {
+        if (Current == Functions.AprilTag) {
+            if (ResultBuf.getNumber(NumberFormat.Int8LE, 0x01) > 0) {
+                return true
+            }
+        }
+        return false
+    }
+    /**
+     * TODO: 识别到的全部标签个数
+     */
+    //% weight=95 block="Number of all tags detected "
+    //% subcategory="AprilTag"
+    export function numberAllTagDetected(): number {
+        if (Current == Functions.AprilTag) {
+            return ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
+        }
+        return 0
+    }
+    /**
+     * TODO: 是否识别到了指定ID的标签
+     */
+    //% weight=90 block="Is tag ID:$id detected?"
+    //% id.defl=1
+    //% subcategory="AprilTag"
+    export function isDetecteAprilTagId(id: number): boolean {
+        if (Current == Functions.AprilTag) {
+            let num = ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
+            for (let i = 2; i < num; i++) {  // 逐个对比是否有这个id
+                if (ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
+                    return true;
+                }
+            }
+        }
+        return false
+    }
+    /**
+     * TODO: 识别到的指定ID标签个数
+     */
+    //% weight=100 block="Number of tag ID:|$id| detected "
+    //% subcategory="AprilTag"
+    export function numTagIdDetected(): number {
+        let count = 0
+        if (Current == Functions.AprilTag) {
+            let num = ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
+            for (let i = 2; i < num; i++) {  // 逐个对比是否有这个id
+                if (ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
 
+    
+    /**
+     * TODO: 返回指定标签的位置数据
+     */
+    //% weight=80 block="|$opt| of No.|$index| Tag ID:|$id|"
+    //% id.defl=1
+    //% subcategory="AprilTag"
+    export function getTagDataId(opt: AprilTag_Options,index: number, id: number): number {
+        if (Current == Functions.AprilTag) {
+            let num = ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
+            for (let i = 2; i < 2 + num; i++) {  // 逐个对比是否有这个id
+                if (ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
+                    index -= 1
+                    if (index == 0) {
+                        switch (opt) {
+                            case AprilTag_Options.Pos_X:
+                                return ResultBuf.getNumber(NumberFormat.Int16LE, 0x10 + (32 * (i - 2)));
+                            case AprilTag_Options.Pos_y:
+                                return ResultBuf.getNumber(NumberFormat.Int16LE, 0x10 + 2 + (32 * (i - 2)));
+                            case AprilTag_Options.Width:
+                                return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + 4 + (32 * (i - 2)));
+                            case AprilTag_Options.Height:
+                                return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + 6 + (32 * (i - 2)));
+                            case AprilTag_Options.X_T:
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + (32 * (i - 2)));
+                            case AprilTag_Options.X_R:
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 4 + (32 * (i - 2)));
+                            case AprilTag_Options.Y_T:
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 8 + (32 * (i - 2)));
+                            case AprilTag_Options.Y_R:
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 12 + (32 * (i - 2)));
+                            case AprilTag_Options.Z_T:
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 16 + (32 * (i - 2)));
+                            case AprilTag_Options.Z_R:
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 20 + (32 * (i - 2)));
+                        }
+                    } else {
+                        if (index <= 0) {
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+        return 0
+    }
     //QrCode 
     /**
      * TODO: 是否识别到了二维码
      */
-    //% weight=100 block="Is a QRcode detected?"
+    //% weight=100 block="Is any QRcode detected?"
     //% subcategory="QRcode scanning"
     export function isDetectedQrCode(): boolean {
-        let num = NumberOfLines()
         if (Current == Functions.QrcodeScan) {
             if (ResultBuf.getNumber(NumberFormat.Int8LE, 0x01) > 0) {
                 return true;
