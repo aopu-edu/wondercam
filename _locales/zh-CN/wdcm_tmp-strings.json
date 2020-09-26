@@ -117,7 +117,7 @@
     "WonderCam.getTagDataId|block": "识别到了标签",
     "WonderCam.numberAllTagDetected|block": "识别到的全部标签个数",
     "WonderCam.isDetecteAprilTagId|block": "识别到了标签ID:|$id|",
-    "WonderCam.numTagIdDetected": "识别到的标签ID:|$id|的个数",
+    "WonderCam.numTagIdDetected|block": "识别到的标签ID:|$id|的个数",
     "WonderCam.isDetectedAprilTag|block": "识别到的第|$index|个标签ID:|$id|的|$opt|",
 
     "WonderCam.isDetectedQrCode|block":"识别到了二维码",

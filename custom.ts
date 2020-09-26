@@ -766,7 +766,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了标签
      */
-    //% weight=100 block="Is any Tag detected?"
+    //% weight=99 block="Is any Tag detected?"
     //% subcategory="AprilTag"
     export function isDetectedAprilTag(): boolean {
         if (Current == Functions.AprilTag) {
@@ -779,7 +779,7 @@ namespace WonderCam {
     /**
      * TODO: 识别到的全部标签个数
      */
-    //% weight=95 block="Number of all tags detected "
+    //% weight=90 block="Number of all tags detected "
     //% subcategory="AprilTag"
     export function numberAllTagDetected(): number {
         if (Current == Functions.AprilTag) {
@@ -790,7 +790,7 @@ namespace WonderCam {
     /**
      * TODO: 是否识别到了指定ID的标签
      */
-    //% weight=90 block="Is tag ID:$id detected?"
+    //% weight=80 block="Is tag ID:$id detected?"
     //% id.defl=1
     //% subcategory="AprilTag"
     export function isDetecteAprilTagId(id: number): boolean {
@@ -807,7 +807,7 @@ namespace WonderCam {
     /**
      * TODO: 识别到的指定ID标签个数
      */
-    //% weight=100 block="Number of tag ID:|$id| detected "
+    //% weight=70 block="Number of tag ID:|$id| detected "
     //% subcategory="AprilTag"
     export function numTagIdDetected(): number {
         let count = 0
@@ -826,7 +826,7 @@ namespace WonderCam {
     /**
      * TODO: 返回指定标签的位置数据
      */
-    //% weight=80 block="|$opt| of No.|$index| Tag ID:|$id|"
+    //% weight=60 block="|$opt| of No.|$index| Tag ID:|$id|"
     //% id.defl=1
     //% subcategory="AprilTag"
     export function getTagDataId(opt: AprilTag_Options,index: number, id: number): number {
