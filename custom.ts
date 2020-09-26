@@ -796,7 +796,7 @@ namespace WonderCam {
     export function isDetecteAprilTagId(id: number): boolean {
         if (Current == Functions.AprilTag) {
             let num = ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
-            for (let i = 2; i < num; i++) {  // 逐个对比是否有这个id
+            for (let i = 2; i <  2 + num; i++) {  // 逐个对比是否有这个id
                 if (ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
                     return true;
                 }
@@ -813,7 +813,7 @@ namespace WonderCam {
         let count = 0
         if (Current == Functions.AprilTag) {
             let num = ResultBuf.getNumber(NumberFormat.Int8LE, 0x01)
-            for (let i = 2; i < num; i++) {  // 逐个对比是否有这个id
+            for (let i = 2; i < 2 + num; i++) {  // 逐个对比是否有这个id
                 if (ResultBuf.getNumber(NumberFormat.UInt8LE, i) == id) {
                     count += 1
                 }
