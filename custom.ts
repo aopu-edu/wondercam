@@ -838,26 +838,26 @@ namespace WonderCam {
                     index -= 1
                     if (index == 0) {
                         switch (opt) {
-                            case AprilTag_Options.Pos_X:
-                                return ResultBuf.getNumber(NumberFormat.Int16LE, 0x10 + (32 * (i - 2)));
+                            case AprilTag_Options.Pos:
+                                return ResultBuf.getNumber(NumberFormat.Int16LE, 0x30 + (32 * (i - 2)));
                             case AprilTag_Options.Pos_y:
-                                return ResultBuf.getNumber(NumberFormat.Int16LE, 0x10 + 2 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Int16LE, 0x30 + 2 + (32 * (i - 2)));
                             case AprilTag_Options.Width:
-                                return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + 4 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x30 + 4 + (32 * (i - 2)));
                             case AprilTag_Options.Height:
-                                return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x10 + 6 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x30 + 6 + (32 * (i - 2)));
                             case AprilTag_Options.X_T:
-                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x38 + (32 * (i - 2)));
                             case AprilTag_Options.X_R:
-                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 4 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x38 + 4 + (32 * (i - 2)));
                             case AprilTag_Options.Y_T:
-                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 8 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x38 + 8 + (32 * (i - 2)));
                             case AprilTag_Options.Y_R:
-                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 12 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x38 + 12 + (32 * (i - 2)));
                             case AprilTag_Options.Z_T:
-                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 16 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x38 + 16 + (32 * (i - 2)));
                             case AprilTag_Options.Z_R:
-                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x18 + 20 + (32 * (i - 2)));
+                                return ResultBuf.getNumber(NumberFormat.Float32LE, 0x38 + 20 + (32 * (i - 2)));
                         }
                     } else {
                         if (index <= 0) {
