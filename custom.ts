@@ -112,7 +112,7 @@ namespace WonderCam {
         //% block="Center X"
         Pos_X = 0x00,
         //% block="Center Y"
-        Pos_y = 0x02,
+        Pos_Y = 0x02,
         //% block="W"
         Width = 0x04,
         //% block="H"
@@ -838,9 +838,9 @@ namespace WonderCam {
                     index -= 1
                     if (index == 0) {
                         switch (opt) {
-                            case AprilTag_Options.Pos:
+                            case AprilTag_Options.Pos_X:
                                 return ResultBuf.getNumber(NumberFormat.Int16LE, 0x30 + (32 * (i - 2)));
-                            case AprilTag_Options.Pos_y:
+                            case AprilTag_Options.Pos_Y:
                                 return ResultBuf.getNumber(NumberFormat.Int16LE, 0x30 + 2 + (32 * (i - 2)));
                             case AprilTag_Options.Width:
                                 return ResultBuf.getNumber(NumberFormat.UInt16LE, 0x30 + 4 + (32 * (i - 2)));
