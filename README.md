@@ -12,5 +12,9 @@
 
 #### 元数据（用于搜索、渲染）
 
-for PXT/WonderCam (The metadata above is needed for package search.)
+for PXT/WonderCam
+(The metadata above is needed for package search.)
+
+```package
 WonderCam=github:Hiwonder/WonderCam
+```
