@@ -16,5 +16,5 @@ for PXT/WonderCam
 (The metadata above is needed for package search.)
 
 ```package
-WonderCam=github:Hiwonder/WonderCam
+wondercam=github:Hiwonder/WonderCam
 ```
