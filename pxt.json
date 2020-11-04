@@ -1,5 +1,5 @@
 {
-    "name": "WonderCam",
+    "name": "wondercam",
     "description": "",
     "dependencies": {
         "core": "*"
