@@ -12,7 +12,7 @@
 
 #### 元数据（用于搜索、渲染）
 
-for PXT/WonderCam
+for PXT/wondercam
 (The metadata above is needed for package search.)
 
 ```package
