@@ -1,8 +1,8 @@
 /**
- WonderCam package
+ wondercam package
  */
 //% weight=100 color=#FF8844 icon=""
-namespace WonderCam {
+namespace wondercam {
     export enum Functions {
         //% block="NoFunction"
         NoFunction,
