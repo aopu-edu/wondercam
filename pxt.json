@@ -7,8 +7,7 @@
     "files": [
         "README.md",
         "custom.ts",
-        "_locales/zh-CN/README.md",
-        "_locales/zh-CN/wdcm_tmp-strings.json"
+        "_locales/zh-CN/wondercam-strings.json"
     ],
     "testFiles": [
         "test.ts"
