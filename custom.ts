@@ -204,9 +204,9 @@ namespace wondercam {
     //% dev_addr.defl=DEV_ADDR.x32
     export function wondercam_init(dev_addr: DEV_ADDR = DEV_ADDR.x32): void {
         WONDERCAM_I2C_ADDR = dev_addr
-        ch = i2creadnum(0)
+        var ch = i2creadnum(0)
         while (ch != 'v'.charCodeAt(0)) {
-            basic.showString(string(ch))
+            basic.showString(String(ch))
         }
         basic.clearScreen()
     }
