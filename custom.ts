@@ -206,7 +206,7 @@ namespace wondercam {
         WONDERCAM_I2C_ADDR = dev_addr
         let ch = i2creadnum(0)
         while (ch != 'v'.charCodeAt(0)) {
-            basic.showString(String(ch))
+            basic.showString(ch + "")
         }
         basic.clearScreen()
     }
